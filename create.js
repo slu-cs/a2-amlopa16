@@ -1,10 +1,8 @@
 const fs = require("fs");
 const mongodb = require("mongodb").MongoClient;
-
-// I installed fastcsv on my vm for this
-// and used https://bezkoder.com/node-js-csv-mongodb-collection/ as reference for importing csv stuff
 const fastcsv = require("fast-csv");
 
+// let url = "mongodb://username:password@localhost:27017/";
 let url = "mongodb://localhost:27017/";
 let stream = fs.createReadStream("voters.csv");
 let csvData = [];
@@ -19,6 +17,7 @@ let csvStream = fastcsv
     });
   })
   .on("end", function() {
+    // remove the first line: header
     csvData.shift();
 
     mongodb.connect(
@@ -32,6 +31,8 @@ let csvStream = fastcsv
           .collection("category")
           .insertMany(csvData, (err, res) => {
             if (err) throw err;
+
+            console.log(`Inserted: ${res.insertedCount} rows`);
             client.close();
           });
       }
