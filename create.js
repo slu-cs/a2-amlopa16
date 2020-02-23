@@ -4,16 +4,15 @@ const fastcsv = require("fast-csv");
 
 // let url = "mongodb://username:password@localhost:27017/";
 let url = "mongodb://localhost:27017/";
-let stream = fs.createReadStream("bezkoder.csv");
+let stream = fs.createReadStream("voters.csv");
 let csvData = [];
 let csvStream = fastcsv
   .parse()
   .on("data", function(data) {
     csvData.push({
-      id: data[0],
-      name: data[1],
-      description: data[2],
-      createdAt: data[3]
+      name: data[0],
+      zip: data[1],
+      history: data[2]
     });
   })
   .on("end", function() {
@@ -29,7 +28,7 @@ let csvStream = fastcsv
         if (err) throw err;
 
         client
-          .db("zkoder_db")
+          .db("voters_db")
           .collection("category")
           .insertMany(csvData, (err, res) => {
             if (err) throw err;
