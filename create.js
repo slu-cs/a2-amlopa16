@@ -24,14 +24,14 @@ let csvStream = fastcsv
     mongodb.connect(
       url,
       { useNewUrlParser: true, useUnifiedTopology: true },
-      (error, client) => {
-        if (error) throw err;
+      (err, client) => {
+        if (err) throw err;
 
         client
           .db("voters_db")
           .collection("category")
-          .insertMany(csvData, (error, res) => {
-            if (error) throw err;
+          .insertMany(csvData, (err, res) => {
+            if (err) throw err;
             client.close();
           });
       }
