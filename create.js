@@ -1,7 +1,6 @@
-const mongodb = require("mongodb").MongoClient;
+const mongodb = require("mongodb");
 const csvtojson = require("csvtojson");
 
-// let url = "mongodb://username:password@localhost:27017/";
 let url = "mongodb://localhost:27017/";
 
 csvtojson()
