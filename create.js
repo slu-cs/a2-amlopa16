@@ -1,16 +1,16 @@
-// Store some data in the faculty database
-const fs = require("fs");
-const mongoose = require('mongoose');
-const connect = require('./db');
-const Voter = require('./schema');
+const fs = require('fs');
+const readline = require('readline');
+const file = readline.createInterface({
+  input: fs.createReadStream('majors.csv')
+});
 
-connect(); // To the database
-
-var csv = 'voters.csv';
-
-var lines = csv.split("\n");
-while( typeof lines[0] !== "undefined" ){
-    var line = lines.shift();
-    console.log(line);
-    var split = line.split(',');
-}
+// Create an array of objects, so that each line of the file is represented by an object with three properties.
+const rows = [];
+file.on('line', function(line) {
+  const columns = line.split(',');
+  rows.push({
+    discipline: columns[0],
+    majors: Number(columns[1]),
+    minors: Number(columns[2])
+  });
+});
