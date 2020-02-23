@@ -6,12 +6,12 @@ const Voter = require('./schema');
 
 connect(); // To the database
 
-/*// What documents are in the collection?
-const query = Professor.find();
-query.exec(function(error, professors) {
+// What documents are in the collection?
+const query = Voter.find();
+query.exec(function(error, voters) {
   if (error) console.error(error.stack);
-  console.log(professors);
-});*/
+  console.log(voters);
+});
 
 const queries = [
 
