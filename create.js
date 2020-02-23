@@ -1,24 +1,12 @@
-const fs = require("fs");
 const mongodb = require("mongodb").MongoClient;
-const fastcsv = require("fast-csv");
+const csvtojson = require("csvtojson");
 
 // let url = "mongodb://username:password@localhost:27017/";
 let url = "mongodb://localhost:27017/";
-let stream = fs.createReadStream("voters.csv");
-let csvData = [];
-let csvStream = fastcsv
-  .parse()
-  .on("data", function(data) {
-    csvData.push({
-      first: data[0],
-      last: data[1],
-      zip: data[2],
-      history: data[3]
-    });
-  })
-  .on("end", function() {
-    csvData.shift();
 
+csvtojson()
+  .fromFile("bezkoder.csv")
+  .then(csvData => {
     console.log(csvData);
 
     mongodb.connect(
@@ -28,8 +16,8 @@ let csvStream = fastcsv
         if (err) throw err;
 
         client
-          .db('voters_db')
-          .collection('Voter')
+          .db("voters_db")
+          .collection("Voter")
           .insertMany(csvData, (err, res) => {
             if (err) throw err;
 
@@ -39,5 +27,3 @@ let csvStream = fastcsv
       }
     );
   });
-
-stream.pipe(csvStream);
