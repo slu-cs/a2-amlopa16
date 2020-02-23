@@ -5,7 +5,7 @@ const csvtojson = require("csvtojson");
 let url = "mongodb://localhost:27017/";
 
 csvtojson()
-  .fromFile("bezkoder.csv")
+  .fromFile("voters.csv")
   .then(csvData => {
     console.log(csvData);
 
