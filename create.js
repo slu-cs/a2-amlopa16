@@ -17,7 +17,6 @@ let csvStream = fastcsv
     });
   })
   .on("end", function() {
-    // remove the first line: header
     csvData.shift();
 
     console.log(csvData);
@@ -29,8 +28,8 @@ let csvStream = fastcsv
         if (err) throw err;
 
         client
-          .db("voters_db")
-          .collection("category")
+          .db('voters_db')
+          .collection('Voter')
           .insertMany(csvData, (err, res) => {
             if (err) throw err;
 
