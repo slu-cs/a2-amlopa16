@@ -25,13 +25,13 @@ let csvStream = fastcsv
       url,
       { useNewUrlParser: true, useUnifiedTopology: true },
       (error, client) => {
-        if (error) throw error;
+        if (error) throw err;
 
         client
           .db("voters_db")
           .collection("category")
           .insertMany(csvData, (error, res) => {
-            if (error) throw error;
+            if (error) throw err;
             client.close();
           });
       }
