@@ -20,6 +20,8 @@ let csvStream = fastcsv
     // remove the first line: header
     csvData.shift();
 
+    console.log(csvData);
+
     mongodb.connect(
       url,
       { useNewUrlParser: true, useUnifiedTopology: true },
