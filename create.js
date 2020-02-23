@@ -1,5 +1,6 @@
 const mongodb = require("mongodb");
 const csvtojson = require("csvtojson");
+const Voter = require('./schema');
 
 let url = "mongodb://localhost:27017/";
 
@@ -20,7 +21,6 @@ csvtojson()
           .insertMany(csvData, (err, res) => {
             if (err) throw err;
 
-            console.log(`Inserted: ${res.insertedCount} rows`);
             client.close();
           });
       }
