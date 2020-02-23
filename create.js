@@ -1,21 +1,17 @@
-// Connect to a database about faculty
-
+// Store some data in the faculty database
+const fs = require("fs");
 const mongoose = require('mongoose');
+const connect = require('./db');
+const Voter = require('./schema');
 
-// Export this function
-module.exports = function() {
+connect(); // To the database
 
-  // Avoid warnings
-  mongoose.set('useNewUrlParser', true);
-  mongoose.set('useUnifiedTopology', true);
-  mongoose.set('useCreateIndex', true);
-  mongoose.set('useFindAndModify', false);
+var csv = 'voters.csv';
 
-  // Start connecting
-  mongoose.connect('mongodb://localhost/voters');
-
-  // Make sure we see any errors
-  mongoose.connection.on('error', function(error) {
-    console.error(error.stack);
-  });
-};
+var lines = csv.split("\n");
+while( typeof lines[0] !== "undefined" ){
+    var line = lines.shift();
+    console.log(line);
+    var split = line.split(',');
+    document.querySelector("#content").innerHTML += split[0]+"<br/>";
+}
