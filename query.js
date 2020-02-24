@@ -27,8 +27,8 @@ const queries = [
 Promise.all(queries)
   .then(function(results) {
     console.log('Last alphabetical name: ', results[0]);
-    console.log('Canton Zips: ', results[1].map(p => p.zip));
-    console.log('Names with STARR: ', results[2].map(p => p.first));
+    console.log('Canton Zips: ', results[1]);
+    console.log('Names with STARR: ', results[2]);
     console.log('People who voted in 2016 GE :', results[3]);
     mongoose.connection.close();
   }).catch(error => console.error(error.stack));
