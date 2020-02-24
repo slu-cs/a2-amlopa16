@@ -28,7 +28,7 @@ const queries = [
 // Run the queries in parallel
 Promise.all(queries)
   .then(function(results) {
-    console.log('Names in order: ', results[0]);
+    console.log('Names in order: ', results[0].map(p => p.first));
     console.log('Canton Zips: ', results[1]);
     console.log('Names with STARR: ', results[2]);
     mongoose.connection.close();
