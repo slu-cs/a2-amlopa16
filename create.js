@@ -13,7 +13,6 @@ const file = readline.createInterface({
 
 const voters = [];
 file.on('line', function(line) {
-  console.log(line);
   const columns = line.split(',');
   const v = new Voter({
       first: columns[0],
@@ -26,7 +25,7 @@ file.on('line', function(line) {
 
 file.on('close', function() {
   mongoose.connection.dropDatabase()
-    .then(() => Promise.all(voters).map(v => v.save()))
+    .then(() => Promise.all(voters.map(v => v.save())))
     .then(() => mongoose.connection.close())
     .catch(error => console.log(error));
 });
