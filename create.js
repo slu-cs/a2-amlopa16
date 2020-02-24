@@ -1,3 +1,9 @@
+const mongoose = require('mongoose');
+const connect = require('./db');
+const Voter = require('./schema');
+
+connect(); // To the database
+
 const fs = require('fs');
 const readline = require('readline');
 const file = readline.createInterface({
