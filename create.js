@@ -23,6 +23,10 @@ file.on('line', function(line) {
   saves.push(v.save());
 });
 
+file.on('close', function() {
+    process.exit(0);
+});
+
 mongoose.connection.dropDatabase()
   .then(() => Promise.all(saves))
   .then(() => mongoose.connection.close())
