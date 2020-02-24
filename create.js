@@ -25,7 +25,7 @@ file.on('line', function(line) {
 
 file.on('close', function() {
   mongoose.connection.dropDatabase()
-    .then(() => Promise.all(saves).map(v => v.save))
+    .then(() => Promise.all(saves.map(v => v.save)))
     .then(() => mongoose.connection.close())
     .catch(error => console.log(error));
 });
