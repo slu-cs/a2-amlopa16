@@ -18,7 +18,7 @@ const queries = [
 
   //Voter.find().where('first').equals('STARR'),
 
-  Voter.find().where('GE16').in('history')
+  Voter.find().where('history').includes('GE16')
 
 
 ];
