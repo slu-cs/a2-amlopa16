@@ -9,7 +9,7 @@ connect(); // To the database
 // What documents are in the collection?
 
 const queries = [
-  Voter.count()
+  Voter.countDocuments
 
   // last name alphabetically
   //Voter.find().sort('-last').limit(1),
