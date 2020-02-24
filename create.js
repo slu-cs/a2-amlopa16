@@ -24,11 +24,10 @@ file.on('line', function(line) {
 });
 
 file.on('close', function() {
-  console.log(saves.length);
   mongoose.connection.dropDatabase()
     .then(() => Promise.all(saves))
     .then(() => mongoose.connection.close())
     .catch(error => console.log(error));
 });
-
+console.log(saves.length);
 process.exit(0);
