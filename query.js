@@ -11,14 +11,14 @@ connect(); // To the database
 const queries = [
 
   // last name alphabetically
-  //Voter.find().sort('-last').limit(1),
+  Voter.find().sort('-last').limit(1),
 
   // Voters in Canton zip code
-  //Voter.find().where('zip').equals('13617'),
+  Voter.find().where('zip').equals('13617'),
 
-  //Voter.find().where('first').equals('STARR'),
+  Voter.find().where('first').equals('STARR'),
 
-  Voter.find().where('history').includes('GE16')
+  Voter.find().where('history').in('GE16')
 
 
 ];
@@ -26,9 +26,9 @@ const queries = [
 // Run the queries in parallel
 Promise.all(queries)
   .then(function(results) {
-    //console.log('Last alphabetical name: ', results[0]);
-    //console.log('Canton Zips: ', results[1].map(p => p.zip));
-    //console.log('Names with STARR: ', results[2].map(p => p.first));
-    console.log('People who voted in 2016 GE :', results[0]);
+    console.log('Last alphabetical name: ', results[0]);
+    console.log('Canton Zips: ', results[1].map(p => p.zip));
+    console.log('Names with STARR: ', results[2].map(p => p.first));
+    console.log('People who voted in 2016 GE :', results[3]);
     mongoose.connection.close();
   }).catch(error => console.error(error.stack));
