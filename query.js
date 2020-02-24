@@ -7,11 +7,6 @@ const Voter = require('./schema');
 connect(); // To the database
 
 // What documents are in the collection?
-const query = Voter.find();
-query.exec(function(error, voters) {
-  if (error) console.error(error.stack);
-  console.log(voters);
-});
 
 const queries = [
 
@@ -23,7 +18,7 @@ const queries = [
 
   //Voter.find().where('first').equals('STARR'),
 
-  Voter.filter().where('history').in('GE16')
+  Voter.find().where('history').in('GE16')
 
 
 ];
@@ -34,6 +29,6 @@ Promise.all(queries)
     //console.log('Last alphabetical name: ', results[0]);
     //console.log('Canton Zips: ', results[1].map(p => p.zip));
     //console.log('Names with STARR: ', results[2].map(p => p.first));
-    console.log('People who voted in 2016 GE :', results[0].map(p => p.zip));
+    console.log('People who voted in 2016 GE :', results[0]);
     mongoose.connection.close();
   }).catch(error => console.error(error.stack));
