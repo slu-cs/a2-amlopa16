@@ -15,21 +15,20 @@ query.exec(function(error, voters) {
 
 const queries = [
 
-  // What are names in alphabetical order?
+  // last name alphabetically
   Voter.find().sort('-last').limit(1),
 
   // Voters in Canton zip code
   Voter.find().where('zip').equals(13617),
 
-  // Who teaches 362?
   Voter.find().where('first').in('STARR'),
 ];
 
 // Run the queries in parallel
 Promise.all(queries)
   .then(function(results) {
-    console.log('Names in order: ', results[0].map(p => p.first));
-    console.log('Canton Zips: ', results[1]);
-    console.log('Names with STARR: ', results[2]);
+    console.log('Names in order: ', results[0].map(p => p.last));
+    console.log('Canton Zips: ', results[1].map(p => p.zip));
+    console.log('Names with STARR: ', results[2].map(p => p.first));
     mongoose.connection.close();
   }).catch(error => console.error(error.stack));
