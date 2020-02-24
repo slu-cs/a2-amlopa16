@@ -26,4 +26,4 @@ file.on('line', function(line) {
 mongoose.connection.dropDatabase()
   .then(() => Promise.all(saves))
   .then(() => mongoose.connection.close())
-  .then(error => console.log(error));
+  .catch(error => console.log(error));
