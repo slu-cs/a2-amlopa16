@@ -13,6 +13,7 @@ const file = readline.createInterface({
 
 const voters = [];
 file.on('line', function(line) {
+  console.log(line);
   const columns = line.split(',');
   const v = new Voter({
       first: columns[0],
