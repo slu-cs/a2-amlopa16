@@ -21,7 +21,7 @@ const queries = [
   // Voters in Canton zip code
   Voter.find().where('zip').equals('13617'),
 
-  //Voter.find().where('first').in('STARR'),
+  Voter.find().where('first').equals('STARR')
 ];
 
 // Run the queries in parallel
