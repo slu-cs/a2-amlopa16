@@ -19,15 +19,17 @@ const queries = [
   // voters with first name starr
   Voter.find().where('first').equals('STARR'),
 
-  Voter.find({history: /GE16/})
+  // voters in 2016 general election
+  Voter.find({history: /GE16/}),
 
-
+  // how many zips in county
+  Voter.distinct('zip')
 ];
 
 // Run the queries in parallel
 Promise.all(queries)
   .then(function(results) {
-    console.log('Last alphabetical name: ', results[0].map(p => p.first + p.last));
+    console.log('Last alphabetical name: ', results[0].map(p => p.first + ' ' + p.last));
     console.log('Canton Zips: ', results[1]);
     console.log('Names with STARR: ', results[2]);
     console.log('People who voted in 2016 GE :', results[3]);
