@@ -17,7 +17,7 @@ const queries = [
   Voter.countDocuments().find().where('zip').equals('13617'),
 
   // voters with first name starr
-  Voter.find().where('first').equals('STARR')
+  Voter.find().where('first').equals('STARR'),
 
   Voter.find({history: /GE16/})
 
