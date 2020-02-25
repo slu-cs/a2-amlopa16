@@ -29,4 +29,3 @@ file.on('close', function() {
     .then(() => mongoose.connection.close())
     .catch(error => console.log(error));
 });
-process.exit(0);
