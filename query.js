@@ -14,7 +14,7 @@ const queries = [
   Voter.find().sort('-last').limit(1),
 
   // how many zips in county
-  Voter.distinct('zip'),
+  Voter.countDocuments(Voter.distinct('zip')),
 
   // Voters in Canton zip code
   Voter.countDocuments(Voter.find().where('zip').equals('13617')),
