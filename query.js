@@ -9,7 +9,7 @@ connect(); // To the database
 // What documents are in the collection?
 
 const queries = [
-  Voter.countDocuments()
+  //Voter.countDocuments()
 
   // last name alphabetically
   //Voter.find().sort('-last').limit(1),
@@ -19,7 +19,7 @@ const queries = [
 
   //Voter.find().where('first').equals('STARR')
 
-  //Voter.find().where('history').in('GE16')
+  Voter.find({history: /GE16/})
 
 
 ];
@@ -27,7 +27,7 @@ const queries = [
 // Run the queries in parallel
 Promise.all(queries)
   .then(function(results) {
-    console.log('COUNT :', results[0]);
+    console.log(results[0]);
     //console.log('Last alphabetical name: ', results[0].map(p => p.last));
     //console.log('Canton Zips: ', results[1].map(p => p.last));
     //console.log('Names with STARR: ', results[2].map(p => p.last));
