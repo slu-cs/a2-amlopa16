@@ -20,12 +20,12 @@ file.on('line', function(line) {
       zip: columns[2],
       history: columns[3]
   });
-  saves.push(v.save());
+  v.save();
 });
 
 file.on('close', function() {
   mongoose.connection.dropDatabase()
-    .then(() => Promise.all(saves))
+    //.then(() => Promise.all(saves))
     .then(() => mongoose.connection.close())
     .then(() => process.exit(0))
     .catch(error => console.log(error));
