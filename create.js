@@ -11,7 +11,7 @@ const file = readline.createInterface({
 });
 
 
-const saves = [];
+const voters = [];
 file.on('line', function(line) {
   const columns = line.split(',');
   const v = new Voter({
@@ -20,14 +20,13 @@ file.on('line', function(line) {
       zip: columns[2],
       history: columns[3]
   });
-  v.save();
+  voters.push(v);
 });
 
-mongoose.connection.dropDatabase();
-
-file.on('close', function(error) {
-  if (error) console.error(error.stack);
-    //.then(() => Promise.all(saves))
-  mongoose.connection.close();
-  process.exit(0);
+file.on('close', function() {
+  mongoose.connection.dropDatabase()
+    .then(() => Promise.all(saves))
+    .then(() => mongoose.connection.close())
+    .then(() => process.exit(0))
+    .catch(error => console.log(error));
 });
