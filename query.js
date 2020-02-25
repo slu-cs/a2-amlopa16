@@ -14,7 +14,7 @@ const queries = [
   Voter.find().sort('-last').limit(1),
 
   // Voters in Canton zip code
-  db.collection.countDocuments(Voter.find().where('zip').equals('13617')),
+  Voter.countDocuments(Voter.find().where('zip').equals('13617')),
 
   // voters with first name starr
   Voter.find().where('first').equals('STARR'),
