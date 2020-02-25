@@ -30,7 +30,7 @@ const queries = [
 Promise.all(queries)
   .then(function(results) {
     console.log('Last alphabetical name: ', results[0].map(p => p.first + ' ' + p.last));
-    console.log('Number of County Zips', results[1])
+    console.log('Number of County Zips', results[1]);
     console.log('Canton Zips: ', results[2]);
     console.log('Names with STARR: ', results[3]);
     console.log('People who voted in 2016 GE :', results[4]);
