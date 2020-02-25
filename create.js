@@ -27,7 +27,6 @@ file.on('close', function() {
   mongoose.connection.dropDatabase()
     .then(() => Promise.all(voters.map(v => v.save())))
     .then(() => mongoose.connection.close())
+    .then(() => process.exit(0))
     .catch(error => console.log(error));
 });
-
-process.exit(0);
