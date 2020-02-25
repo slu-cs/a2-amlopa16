@@ -23,10 +23,11 @@ file.on('line', function(line) {
   v.save();
 });
 
+mongoose.connection.dropDatabase();
+
 file.on('close', function() {
-  mongoose.connection.dropDatabase()
+  if (error) console.error(error.stack);
     //.then(() => Promise.all(saves))
-    .then(() => mongoose.connection.close())
-    .then(() => process.exit(0))
-    .catch(error => console.log(error));
+  mongoose.connection.close();
+  process.exit(0);
 });
